@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Button from '@mui/material/Button';
 
 export default function Home() {
   return (
@@ -59,6 +60,9 @@ export default function Home() {
             Documentation
           </a>
         </div>
+         <Button variant="contained" color="primary">
+        MaterialUI Test
+      </Button>
       </main>
     </div>
   );
