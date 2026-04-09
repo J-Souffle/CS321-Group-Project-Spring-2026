@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, use } from 'react';
 import { Box } from '@mui/material';
 import GoalCard, { SubGoal } from '../../components/GoalCard';
 
-export default function Home() {
+export default function GoalDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+
   const [goals, setGoals] = useState<SubGoal[]>([
     { id: 1, label: "Sub Goal 1", completed: true },
     { id: 2, label: "Sub Goal 2", completed: true },
@@ -27,10 +29,10 @@ export default function Home() {
   return (
     <Box sx={{ bgcolor: '#f4f4f6', minHeight: '100vh', py: 4 }}>
       <GoalCard 
-        goalTitle="GOAL 1"
-        breadcrumbs={["Home", "Savings Goals"]}
+        goalTitle={`GOAL ${id}`}
+        breadcrumbs={["Home", "Savings Goals", `Goal ${id}`]}
         percentage={progressPercent}
-        description="(Insert Description Goal)"
+        description={`Detailed breakdown for Goal ${id}`}
         subGoals={goals}
         onCheckboxChange={handleCheckbox}
       />
