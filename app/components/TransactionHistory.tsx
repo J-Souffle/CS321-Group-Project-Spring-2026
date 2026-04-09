@@ -65,58 +65,30 @@ export default function TransactionHistoryView() {
   ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
-    <div className="animate-in fade-in duration-300">
-      <header className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">Transaction History</h1>
-          <p className="text-gray-500 mt-1 font-medium">All your savings contributions in one place.</p>
+    <div className="flex flex-col space-y-4 animate-in fade-in duration-300">
+      {allTransactions.map(t => {
+        const isPositive = t.amount >= 0;
+        return (
+          <div key={t.id} className="flex flex-row justify-between items-center border-b border-gray-200 pb-4 last:border-0">
+            <div className="flex flex-col">
+              <span className="text-gray-900 font-medium">
+                {new Date(t.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+              </span>
+              <span className="text-gray-500 text-sm">
+                {t.note || (isPositive ? 'Contribution' : 'Withdrawal')}
+              </span>
+            </div>
+            <div className={`font-bold text-lg ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+              {isPositive ? '+' : '-'}${Math.abs(t.amount).toLocaleString()}
+            </div>
+          </div>
+        );
+      })}
+      {allTransactions.length === 0 && (
+        <div className="text-center text-gray-500 py-8">
+          No transactions found.
         </div>
-      </header>
-      
-      <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-gray-50 border-b border-gray-100 text-gray-500 text-xs uppercase tracking-wider">
-                <th className="p-4 font-bold">Date</th>
-                <th className="p-4 font-bold">Description</th>
-                <th className="p-4 font-bold">Goal</th>
-                <th className="p-4 font-bold text-right">Amount</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {allTransactions.map(t => {
-                const isPositive = t.amount >= 0;
-                return (
-                  <tr key={t.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="p-4 text-gray-500 font-medium whitespace-nowrap">
-                      {new Date(t.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
-                    </td>
-                    <td className="p-4">
-                      <div className="font-bold text-gray-900">
-                        {t.note || (isPositive ? 'Contribution' : 'Withdrawal')}
-                      </div>
-                    </td>
-                    <td className="p-4 text-gray-700">
-                      {t.goalName}
-                    </td>
-                    <td className={`p-4 text-right font-bold text-lg ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
-                      {isPositive ? '+' : '-'}${Math.abs(t.amount).toLocaleString()}
-                    </td>
-                  </tr>
-                );
-              })}
-              {allTransactions.length === 0 && (
-                <tr>
-                  <td colSpan={4} className="p-8 text-center text-gray-500 font-medium">
-                    No transactions found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
