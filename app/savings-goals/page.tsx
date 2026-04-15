@@ -59,7 +59,11 @@ export default function SavingsGoalsPage(){
             </Button>
         </Link>
         </Stack>
-        <Button size = "large">Back to Home</Button>
+        <Link href="/" passHref style={{ textDecoration: 'none' }}>
+          <Button size = "large">
+          Back to Home
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

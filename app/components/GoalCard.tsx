@@ -22,9 +22,14 @@ export interface SubGoal {
   completed: boolean;
 }
 
+export interface BreadcrumbItem {
+  label: string;
+  path: string;
+}
+
 export interface GoalCardProps {
   goalTitle: string;
-  breadcrumbs?: string[]; 
+  breadcrumbs?: BreadcrumbItem[]; 
   percentage: number; 
   description?: string;
   subGoals: SubGoal[];
@@ -89,12 +94,22 @@ export default function GoalCard({
           </Typography>
           
           {breadcrumbs.length > 0 && (
-            <Breadcrumbs separator="/" aria-label="breadcrumb" sx={{ justifyContent: 'center', display: 'flex' }}>
+            <Breadcrumbs 
+              separator="/" 
+              aria-label="breadcrumb" 
+              sx={{ justifyContent: 'center', display: 'flex' }}
+            >
               {breadcrumbs.map((crumb, index) => (
-                <Link key={index} underline="hover" color="inherit" href="#">
-                  {crumb}
+                <Link 
+                  key={index} 
+                  underline="hover" 
+                  color="inherit" 
+                  href={crumb.path} // This makes it go back to the correct URL
+                >
+                  {crumb.label}
                 </Link>
               ))}
+              {/* The current page title (the last item) */}
               <Typography color="text.primary">{goalTitle}</Typography>
             </Breadcrumbs>
           )}

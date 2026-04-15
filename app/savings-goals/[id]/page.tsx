@@ -30,7 +30,7 @@ export default function GoalDetailPage({ params }: { params: Promise<{ id: strin
     <Box sx={{ bgcolor: '#f4f4f6', minHeight: '100vh', py: 4 }}>
       <GoalCard 
         goalTitle={`GOAL ${id}`}
-        breadcrumbs={["Home", "Savings Goals", `Goal ${id}`]}
+        breadcrumbs={[{label : "Home", path: "/"}, {label: "Savings Goals", path: "/savings-goals"}]}
         percentage={progressPercent}
         description={`Detailed breakdown for Goal ${id}`}
         subGoals={goals}
