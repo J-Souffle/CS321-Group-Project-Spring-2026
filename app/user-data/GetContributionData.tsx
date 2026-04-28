@@ -11,7 +11,7 @@ export interface ContributionData {
 }
 
 /* TODO: only fetch goals matching goal id */
-export function GetGoalContributions(goal_id: number){
+export default function GetGoalContributions(goal_id: number){
 
   const [contributions, setContributions] = useState<ContributionData[]>([]);
 
