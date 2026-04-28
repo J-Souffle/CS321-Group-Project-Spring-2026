@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Box } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
+import React, { useEffect, useState } from 'react';
+import { Box, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Divider from '@mui/material/Divider';
-import Stack from '@mui/material/Stack';
 import Link from 'next/link';
+import TransactionHistory, {Contribution, SavingsGoal } from '../components/TransactionHistory';
+import InsertUserGoal from '../user-data/InsertData'
+import GetUserGoal from '../user-data/GetData'
+import {supabase} from "../supabase-client";
 
 
 export default function SavingsGoalsPage(){
@@ -23,7 +23,6 @@ export default function SavingsGoalsPage(){
         <Typography variant="h3" sx={{ fontWeight: 800, mb: 0.5, color: '#000000' }}>
           Savings Goals
         </Typography>
-
         <Breadcrumbs sx={{justifyContent: 'center', display: 'flex'}}>
           <Typography>
             Home
@@ -32,33 +31,27 @@ export default function SavingsGoalsPage(){
             Savings Goals
           </Typography>
         </Breadcrumbs>
+
+        {/*Separate Section for brief overview*/}
         <Divider component="li" />
         <Typography variant= 'h5' sx = {{ fontweight: 800, mb: 0.5, color: '#000000'}}>
-          Here you can find your current goals in place and how far you've gone to reach them!
+          Here you can find your current goals and add more!
         </Typography>
-        <Typography variant = 'h5' sx = {{ fontweight: 800, mb: 0.5, color: '#000000'}}>
+        <Typography variant = 'h6' sx = {{ fontweight: 800, mb: 0.5, color: '#000000'}}>
           Click to view more details:
         </Typography>
+        <Divider component="li"/>
+
+        {/*ask user to add their customized goal*/}
+        <Typography variant = 'h5' sx = {{ fontweight: 800, mb: 0.5, color: '#000000'}}>
+          Add Customized Goals here:
+        </Typography>
+        <InsertUserGoal />
         <Divider component="li" />
-        <Stack spacing={2} sx={{ mt: 2, alignItems: 'center' }}>
-        <Link href="/savings-goals/1" passHref style={{ textDecoration: 'none', width: '100%', maxWidth: '400px' }}>
-            <Button variant="contained" size="large" fullWidth>
-            Goal 1: Current Progress - --%
-            </Button>
-        </Link>
 
-        <Link href="/savings-goals/2" passHref style={{ textDecoration: 'none', width: '100%', maxWidth: '400px' }}>
-            <Button variant="contained" size="large" fullWidth>
-            Goal 2: Current Progress - --%
-            </Button>
-        </Link>
+        {/*Show user's goals*/}
+        <GetUserGoal />
 
-        <Link href="/savings-goals/3" passHref style={{ textDecoration: 'none', width: '100%', maxWidth: '400px' }}>
-            <Button variant="contained" size="large" fullWidth>
-            Goal 3: Current Progress - --%
-            </Button>
-        </Link>
-        </Stack>
         <Link href="/" passHref style={{ textDecoration: 'none' }}>
           <Button size = "large">
           Back to Home
