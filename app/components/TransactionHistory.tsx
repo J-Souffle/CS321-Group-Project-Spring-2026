@@ -75,7 +75,7 @@ export default function TransactionHistoryView({ id }: { id: number }) {
           <div key={t.id} className="flex flex-row justify-between items-center border-b border-gray-200 pb-4 last:border-0">
             <div className="flex flex-col">
               <span className="text-gray-900 font-medium">
-                {new Date(t.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+                {new Date(t.date).toLocaleDateString('en-GB', {timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' })}
               </span>
               <span className="text-gray-500 text-sm">
                 {t.note || (isPositive ? 'Contribution' : 'Withdrawal')}

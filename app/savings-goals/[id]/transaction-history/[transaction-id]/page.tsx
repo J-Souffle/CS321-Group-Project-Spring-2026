@@ -47,7 +47,7 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
        <Typography variant = 'h5' sx = {{ fontweight: 800, mb: 0.5, color: '#000000'}}>
          Add transactions here:
        </Typography>
-       <InsertTransaction />
+      <InsertTransaction goalId={Number(id)} />
 
        <Divider component="li" />
 

@@ -6,11 +6,12 @@ import Typography from '@mui/material/Typography';
 import TransactionHistory, {Contribution, SavingsGoal } from '../components/TransactionHistory';
 import {supabase} from "../supabase-client";
 
-
-export default function InsertTransaction(){
+/* Takes in a goal id.
+Creates a new transaction associated with that goal id. */
+export default function InsertTransaction({ goalId }: { goalId: number }){
 
     //handling data
-    const[newTransaction, setNewTransaction] = useState({Amount: 0, Date: "", Goal_id: "", AddedOrSubtracted: true})
+    const[newTransaction, setNewTransaction] = useState({Amount: 0, Date: "", Goal_id: goalId, AddedOrSubtracted: true})
     
     const handleSubmit = async(e: any) => {
         e.preventDefault()
@@ -21,7 +22,7 @@ export default function InsertTransaction(){
         console.error("Error Adding Task:", error.message);
         return;
     }
-        setNewTransaction({Amount: 0, Date: "", Goal_id: "", AddedOrSubtracted: true})
+        setNewTransaction({Amount: 0, Date: "", Goal_id: goalId, AddedOrSubtracted: true})
     };
 
     return(
@@ -39,14 +40,6 @@ export default function InsertTransaction(){
                 type="date"
                 value={newTransaction.Date}
                 onChange={(e) => setNewTransaction((prev) => ({...prev, ...prev, ...prev, Date: e.target.value}))}
-                style={{border: '2px solid black', color: 'black', width: "100%", marginBottom: "0.5rem", padding: "0.5rem"}}
-            />
-
-            <input
-            type = "number"
-            value={newTransaction.Goal_id} 
-                placeholder = "Insert Goal ID:" 
-                onChange={(e) => setNewTransaction((prev) => ({...prev, ...prev, ...prev, Goal_id: e.target.value}))}
                 style={{border: '2px solid black', color: 'black', width: "100%", marginBottom: "0.5rem", padding: "0.5rem"}}
             />
 
