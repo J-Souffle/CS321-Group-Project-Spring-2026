@@ -3,7 +3,7 @@
 
 import React, {useEffect, useState} from 'react';
 import {supabase} from "../supabase-client";
-import TransactionHistory, {Contribution} from '../components/TransactionHistory';
+import {Contribution} from '../components/TransactionHistory';
 
 /* If added is true, that means the contribution was positive. */
 interface ContributionData {

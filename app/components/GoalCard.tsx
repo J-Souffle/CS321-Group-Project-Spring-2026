@@ -192,7 +192,7 @@ export default function GoalCard({
               
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, ml: 3.5 }}>
                 <Link 
-                  href={`/savings-goals/${id}/transaction-history`}
+                  href={`/savings-goals/${id}/transaction-history/${id}`}
                   underline="hover" 
                   sx={{ color: '#673ab7', fontWeight: 600, fontSize: '0.95rem' }}
                 >

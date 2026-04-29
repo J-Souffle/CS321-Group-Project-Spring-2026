@@ -9,9 +9,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import TransactionHistoryView from '../../../components/TransactionHistory';
+import TransactionHistoryView from '../../../../components/TransactionHistory';
+import { use } from 'react';
+import GetContributionData from '../../../../user-data/GetContributionData';
 
-export default function Home() {
+export default function Home({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const goalContributions = GetContributionData(Number(id));
 
   return (
     <div className="flex flex-1 items-center justify-center bg-zinc-50 font-sans ">
