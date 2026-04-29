@@ -1,21 +1,12 @@
 import * as React from 'react';
-import Image from "next/image";
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TransactionHistoryView from '../../../../components/TransactionHistory';
 import { use } from 'react';
-import GetContributionData from '../../../../user-data/GetContributionData';
 
 export default function Home({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const goalContributions = GetContributionData(Number(id));
 
   return (
     <div className="flex flex-1 items-center justify-center bg-zinc-50 font-sans ">
@@ -41,7 +32,7 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
         </div>
         {/* Transaction components go here */}
         <section aria-label="transactions">
-          <TransactionHistoryView />
+          <TransactionHistoryView id={Number(id)} />
         </section>
       </main>
     </div>
