@@ -20,7 +20,9 @@ export default function SavingsGoalsPage(){
   
   //display data
   return(
-    <Box sx={{ bgcolor: '#f4f4f6', minHeight: '100vh', py: 4}}>
+    <div className="flex flex-1 items-center justify-center bg-zinc-50 font-sans ">
+      
+    <Box sx={{ bgcolor: '#ffffff', minHeight: '100vh', py: 4}}>
       {/*Header & Breadcrumbs (repeated to maintain consistency)*/}
       <Box sx={{ textAlign: 'center', mb: 4}}>
         <Typography variant="h3" sx={{ fontWeight: 800, mb: 0.5, color: '#000000' }}>
@@ -62,5 +64,7 @@ export default function SavingsGoalsPage(){
         </Link>
       </Box>
     </Box>
+
+    </div>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import GetUserGoal, {Goal} from '../user-data/GetData';
 import Button from '@mui/material/Button'
 import Link from 'next/link'
