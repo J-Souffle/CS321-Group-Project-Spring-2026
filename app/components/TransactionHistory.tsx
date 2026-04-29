@@ -5,6 +5,7 @@ export interface Contribution {
   date: string;
   amount: number;
   note?: string;
+  
 }
 
 export interface SavingsGoal {
@@ -16,6 +17,7 @@ export interface SavingsGoal {
   contributions: Contribution[];
 }
 
+/* These are some hardcoded savings goals that can be used for testing purposes. */
 const goals: SavingsGoal[] = [
   {
     id: '1',
@@ -58,6 +60,7 @@ const goals: SavingsGoal[] = [
     ]
   }
 ];
+
 
 export default function TransactionHistoryView() {
   const allTransactions = goals.flatMap(goal => 
