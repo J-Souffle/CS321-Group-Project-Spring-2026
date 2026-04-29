@@ -3,9 +3,11 @@
 import React, { useState, use } from 'react';
 import { Box } from '@mui/material';
 import GoalCard, { SubGoal } from '../../components/GoalCard';
+import GetSelectedGoal from "../../user-data/GetSelectedGoal";
 
 export default function GoalDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
+  const goal = GetSelectedGoal(Number(id));
 
   const [goals, setGoals] = useState<SubGoal[]>([
     { id: 1, label: "Sub Goal 1", completed: true },
@@ -29,10 +31,11 @@ export default function GoalDetailPage({ params }: { params: Promise<{ id: strin
   return (
     <Box sx={{ bgcolor: '#f4f4f6', minHeight: '100vh', py: 4 }}>
       <GoalCard 
+        id={Number(id)}
         goalTitle={`GOAL ${id}`}
         breadcrumbs={[{label : "Home", path: "/"}, {label: "Savings Goals", path: "/savings-goals"}]}
         percentage={progressPercent}
-        description={`Detailed breakdown for Goal ${id}`}
+        description={`${goal?.Description}`}
         subGoals={goals}
         onCheckboxChange={handleCheckbox}
       />

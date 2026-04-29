@@ -18,16 +18,7 @@ export default function Home() {
       <main className="flex flex-1 w-full flex-col max-w-4xl py-32 px-16 bg-zinc-50">
         <div className="flex flex-row justify-between my-2">
           <h1 className="text-5xl text-black">History</h1>
-          <FormControl sx={{ minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-label">Filter</InputLabel>
-            {/* Form is unfinished - add more labels and JS later */}
-            <Select
-            label="Filter"
-            >
-              <MenuItem value={"Newest"}>Newest</MenuItem>
-              <MenuItem value={"Oldest"}>Oldest</MenuItem>
-            </Select>
-          </FormControl>
+
         </div>
         <Breadcrumbs className="mb-4" aria-label="breadcrumb">
           <Link underline="hover" color="inherit" href="/">

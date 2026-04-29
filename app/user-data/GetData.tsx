@@ -11,6 +11,8 @@ export interface Goal{
   Description: string;
 }
 
+/* Fetches all goals from the database
+and returns an array of those goals. */
 export default function GetUserGoal(){
 
   const [goals, setGoals] = useState<Goal[]>([]);

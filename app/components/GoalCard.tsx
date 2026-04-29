@@ -28,6 +28,7 @@ export interface BreadcrumbItem {
 }
 
 export interface GoalCardProps {
+  id: number;
   goalTitle: string;
   breadcrumbs?: BreadcrumbItem[]; 
   percentage: number; 
@@ -64,6 +65,7 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
 }));
 
 export default function GoalCard({
+  id,
   goalTitle,
   breadcrumbs = [],
   percentage,
@@ -190,7 +192,7 @@ export default function GoalCard({
               
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, ml: 3.5 }}>
                 <Link 
-                  href="/savings-goals/${id}/transaction-history" 
+                  href={`/savings-goals/${id}/transaction-history`}
                   underline="hover" 
                   sx={{ color: '#673ab7', fontWeight: 600, fontSize: '0.95rem' }}
                 >
