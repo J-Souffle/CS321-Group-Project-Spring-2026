@@ -12,18 +12,21 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
     <div className="flex flex-1 items-center justify-center bg-zinc-50 font-sans ">
       <main className="flex flex-1 w-full flex-col max-w-4xl py-32 px-16 bg-zinc-50">
         <div className="flex flex-row justify-between my-2">
-          <h1 className="text-5xl text-black">History</h1>
+          <h1 className="text-5xl text-black">Contribution History</h1>
 
         </div>
         <Breadcrumbs className="mb-4" aria-label="breadcrumb">
           <Link underline="hover" color="inherit" href="/">
             Home
           </Link>
-          <Link underline="hover" color="inherit" href="/">
+          <Link underline="hover" color="inherit" href="../../">
             Savings Goals
           </Link>
-          <Link underline="hover" color="inherit" href="/">
-            <Typography sx={{ color: 'text.primary' }}>Breadcrumbs</Typography>
+          <Link underline="hover" color="inherit" href="../">
+            Goal {id}
+          </Link>
+          <Link underline="hover" color="inherit" href={`../transaction-history/${id}`}>
+            <Typography sx={{ color: 'text.primary' }}>Contribution History</Typography>
           </Link>
         </Breadcrumbs>
         <div className="flex flex-row text-black justify-between my-10">
