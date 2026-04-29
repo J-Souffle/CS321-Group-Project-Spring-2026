@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Divider from '@mui/material/Divider';
-import Link from 'next/link';
+import Link from "@mui/material/Link"
 import TransactionHistory, {Contribution, SavingsGoal } from '../components/TransactionHistory';
 import InsertUserGoal from '../user-data/InsertData'
 import DisplaySavingsGoals from "../display/DisplaySavingsGoals"
@@ -27,12 +27,12 @@ export default function SavingsGoalsPage(){
           Savings Goals
         </Typography>
         <Breadcrumbs sx={{justifyContent: 'center', display: 'flex'}}>
-          <Typography>
+          <Link underline="hover" color="inherit" href="/">
             Home
-          </Typography>
-          <Typography>
+          </Link>
+          <Link underline="hover" color="inherit" href="app/savings_g">
             Savings Goals
-          </Typography>
+          </Link>
         </Breadcrumbs>
 
         {/*Separate Section for brief overview*/}
@@ -55,7 +55,7 @@ export default function SavingsGoalsPage(){
         {/*Show user's goals*/}
         <DisplaySavingsGoals />
 
-        <Link href="/" passHref style={{ textDecoration: 'none' }}>
+        <Link underline="hover" color = "inherit" href ="/">
           <Button size = "large">
           Back to Home
           </Button>
