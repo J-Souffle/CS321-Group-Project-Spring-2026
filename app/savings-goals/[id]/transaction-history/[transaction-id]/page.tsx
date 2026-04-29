@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -42,5 +41,3 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
     </div>
   );
 }
-=======
->>>>>>> 32430ddf5cad39028a93f76bfe7c54fa835d71d6
