@@ -43,7 +43,7 @@ export default function Home(){
                 View Savings Goals
               </Button>
             </Link>
-
+            {/*
             <Button 
               variant="outlined" 
               size="large" 
@@ -51,6 +51,7 @@ export default function Home(){
             >
               Recent Transactions
             </Button>
+            */}
           </Stack>
         </Paper>
       </Container>
