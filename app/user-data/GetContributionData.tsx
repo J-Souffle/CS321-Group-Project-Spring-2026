@@ -8,10 +8,10 @@ import TransactionHistory, {Contribution} from '../components/TransactionHistory
 /* If added is true, that means the contribution was positive. */
 interface ContributionData {
   id: number;
-  goalId: number;
-  date: string;
-  amount: number;
-  added: boolean;
+  Goal_id: number;
+  Date: string;
+  Amount: number;
+  AddedOrSubtracted: boolean;
 }
 
 /* Gets all contributions associated with the goal ID
@@ -24,14 +24,11 @@ export default function GetGoalContributions(goalId: number) {
 /* Finds the fetched contributions related to our specified goal id.
 Then, converts each of these to the type Contribution from TransactionHistory.tsx. */
 function ConvertData(goalId: number) {
-  const contributionData: ContributionData[] = GetAllContributions();
+  const contributionData: ContributionData[] = GetAllContributions(goalId);
   let contributions: Contribution[] = [];
 
   for (const data of contributionData) {
-    /* Only use contributions associated with the correct goal id */
-    if (data.goalId == goalId) {
-      contributions.push(ContributionDataToContribution(data));
-    }
+    contributions.push(ContributionDataToContribution(data));
   }
 
   return contributions;
@@ -43,21 +40,21 @@ function ContributionDataToContribution(data: ContributionData) {
   let multiplier: number = 1;
 
   /* Multiplier is used to set the value to negative */
-  if (data.added == false) {
+  if (data.AddedOrSubtracted == false) {
     multiplier = -1;
   }
 
   const contribution: Contribution = {
     id: data.id.toString(),
-    date: data.date,
-    amount: data.amount * multiplier
+    date: data.Date,
+    amount: data.Amount * multiplier
   }
   
   return contribution;
 }
 
-/* Fetches all contributions from the database. */
-function GetAllContributions(){
+/* Fetches all contributions given a specific goal id. */
+function GetAllContributions(goalId: number){
 
   const [contributions, setContributions] = useState<ContributionData[]>([]);
 
@@ -65,6 +62,7 @@ function GetAllContributions(){
     const{error, data} = await supabase
       .from("Transaction_Table")
       .select("*")
+      .eq("Goal_id", goalId)
       .order("id", {ascending: true});
 
       if(error){
