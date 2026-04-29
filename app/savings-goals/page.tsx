@@ -9,9 +9,12 @@ import Divider from '@mui/material/Divider';
 import Link from 'next/link';
 import TransactionHistory, {Contribution, SavingsGoal } from '../components/TransactionHistory';
 import InsertUserGoal from '../user-data/InsertData'
-import GetUserGoal from '../user-data/GetData'
+import DisplaySavingsGoals from "../display/DisplaySavingsGoals"
 import {supabase} from "../supabase-client";
 
+const handleClick = () => {
+  
+};
 
 export default function SavingsGoalsPage(){
   
@@ -50,7 +53,7 @@ export default function SavingsGoalsPage(){
         <Divider component="li" />
 
         {/*Show user's goals*/}
-        <GetUserGoal />
+        <DisplaySavingsGoals />
 
         <Link href="/" passHref style={{ textDecoration: 'none' }}>
           <Button size = "large">
