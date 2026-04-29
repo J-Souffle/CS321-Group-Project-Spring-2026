@@ -4,6 +4,9 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import TransactionHistoryView from '../../../../components/TransactionHistory';
 import { use } from 'react';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import InsertTransaction from '@/app/user-data/InsertTransaction';
 
 export default function Home({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -29,6 +32,28 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
             <Typography sx={{ color: 'text.primary' }}>Contribution History</Typography>
           </Link>
         </Breadcrumbs>
+
+ {/*Separate Section for brief overview*/}
+    <Divider component="li" />
+       <Typography variant= 'h5' sx = {{ fontweight: 800, mb: 0.5, color: '#000000'}}>
+         Here you can find your current transaction history and add new transactions!
+       </Typography>
+       <Divider component="li"/>
+
+
+       {/*ask user to add their transaction*/}
+       <Typography variant = 'h5' sx = {{ fontweight: 800, mb: 0.5, color: '#000000'}}>
+         Add transactions here:
+       </Typography>
+       <InsertTransaction />
+
+       <Divider component="li" />
+
+        <Link underline="none" href="/">
+         <Button size="large">
+           Back to Home
+       </Button>
+     </Link>
         <div className="flex flex-row text-black justify-between my-10">
           <p>Date</p>
           <p>Amount</p>
