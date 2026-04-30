@@ -43,6 +43,8 @@ export default function GoalDetailPage({ params }: { params: Promise<{ id: strin
 
       if (saved <= 0) {
         progressPercent = 0;
+      } else if (saved > proxyGoalAmount) {
+        progressPercent = 100;
       } else {
         progressPercent = Math.round((saved / goal.Goal_Amount) * 100);
       }
