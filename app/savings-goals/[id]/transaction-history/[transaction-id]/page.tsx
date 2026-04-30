@@ -50,12 +50,6 @@ export default function Home({ params }: { params: Promise<{ id: string }> }) {
       <InsertTransaction goalId={Number(id)} />
 
        <Divider component="li" />
-
-        <Link underline="none" href="/">
-         <Button size="large">
-           Back to Home
-       </Button>
-     </Link>
         <div className="flex flex-row text-black justify-between my-10">
           <p>Date</p>
           <p>Amount</p>

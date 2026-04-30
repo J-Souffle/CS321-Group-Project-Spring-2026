@@ -12,10 +12,6 @@ import InsertUserGoal from '../user-data/InsertData'
 import DisplaySavingsGoals from "../display/DisplaySavingsGoals"
 import {supabase} from "../supabase-client";
 
-const handleClick = () => {
-  
-};
-
 export default function SavingsGoalsPage(){
   
   //display data
@@ -32,7 +28,7 @@ export default function SavingsGoalsPage(){
           <Link underline="hover" color="inherit" href="/">
             Home
           </Link>
-          <Link underline="hover" color="inherit" href="app/savings_g">
+          <Link underline="hover" color="inherit" href="../savings-goals">
             Savings Goals
           </Link>
         </Breadcrumbs>
@@ -41,9 +37,6 @@ export default function SavingsGoalsPage(){
         <Divider component="li" />
         <Typography variant= 'h5' sx = {{ fontweight: 800, mb: 0.5, color: '#000000'}}>
           Here you can find your current goals and add more!
-        </Typography>
-        <Typography variant = 'h6' sx = {{ fontweight: 800, mb: 0.5, color: '#000000'}}>
-          Click to view more details:
         </Typography>
         <Divider component="li"/>
 

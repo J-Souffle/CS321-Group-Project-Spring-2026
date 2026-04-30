@@ -47,8 +47,8 @@ export default function InsertTransaction({ goalId }: { goalId: number }){
                 onChange={(e) => setNewTransaction((prev) => ({...prev, ...prev, ...prev, AddedOrSubtracted: e.target.value == "true"}))}
                 style={{border: '2px solid black', color: 'black', width: "100%", marginBottom: "0.5rem", padding: "0.5rem"}}
             >
-                <option value = "true" >add money</option>
-                <option value = "false" >subtract money</option>
+                <option value = "true" >Add money</option>
+                <option value = "false" >Subtract money</option>
 
             </select>
             <button type = "submit" style={{border: '2px solid black', backgroundColor: "#4169e1" , padding: "0.5rem 1rem"}}>

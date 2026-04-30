@@ -4,10 +4,14 @@ import React, { useState, use } from 'react';
 import { Box } from '@mui/material';
 import GoalCard, { SubGoal } from '../../components/GoalCard';
 import GetSelectedGoal from "../../user-data/GetSelectedGoal";
+import CalculateMoneySaved from '../../calculations/CalculateMoneySaved';
 
 export default function GoalDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const goal = GetSelectedGoal(Number(id));
+  const saved = CalculateMoneySaved(Number(id));
+  let proxyGoalAmount = 0;
+  let progressPercent = 0;
 
   const [goals, setGoals] = useState<SubGoal[]>([
     { id: 1, label: "Sub Goal 1", completed: true },
@@ -24,9 +28,26 @@ export default function GoalDetailPage({ params }: { params: Promise<{ id: strin
     );
   };
 
-  // calculate progress percentage based on checkboxes
-  const completedCount = goals.filter(g => g.completed).length;
+  // calculate progress percentage based on checkboxes -> Used with checkbox
+  /*const completedCount = goals.filter(g => g.completed).length; 
   const progressPercent = Math.round((completedCount / goals.length) * 100);
+  */
+
+  /* Calculates progress percentage to update progress bar */
+
+  /* I have to do this in a roundabout way since the
+  compiler won't accept me using goal's fields. This is because there is a possibility
+  of goal being null. */
+  if (goal) {
+    proxyGoalAmount = goal.Goal_Amount;
+
+      if (saved <= 0) {
+        progressPercent = 0;
+      } else {
+        progressPercent = Math.round((saved / goal.Goal_Amount) * 100);
+      }
+
+  }
 
   return (
     <Box sx={{ bgcolor: '#f4f4f6', minHeight: '100vh', py: 4 }}>
@@ -36,8 +57,10 @@ export default function GoalDetailPage({ params }: { params: Promise<{ id: strin
         breadcrumbs={[{label : "Home", path: "/"}, {label: "Savings Goals", path: "/savings-goals"}]}
         percentage={progressPercent}
         description={`${goal?.Description}`}
-        subGoals={goals}
-        onCheckboxChange={handleCheckbox}
+        goalAmount={proxyGoalAmount}
+        savedAmount={saved}
+        /*subGoals={goals}
+        onCheckboxChange={handleCheckbox} */
       />
     </Box>
   );
