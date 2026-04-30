@@ -28,12 +28,15 @@ export interface BreadcrumbItem {
 }
 
 export interface GoalCardProps {
+  id: number;
   goalTitle: string;
   breadcrumbs?: BreadcrumbItem[]; 
   percentage: number; 
   description?: string;
-  subGoals: SubGoal[];
-  onCheckboxChange?: (id: string | number, checked: boolean) => void;
+  /* subGoals: SubGoal[]; */
+  goalAmount: number;
+  savedAmount: number;
+  /* onCheckboxChange?: (id: string | number, checked: boolean) => void; */
 }
 
 const HeaderImage = styled(Box)(() => ({
@@ -64,12 +67,15 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
 }));
 
 export default function GoalCard({
+  id,
   goalTitle,
   breadcrumbs = [],
   percentage,
   description = "(No description provided)",
-  subGoals,
-  onCheckboxChange
+  goalAmount,
+  savedAmount
+  /* subGoals, 
+  onCheckboxChange */
 }: GoalCardProps) {
   
   return (
@@ -115,6 +121,13 @@ export default function GoalCard({
           )}
         </Box>
 
+        {/* Monetary progress section */}
+        <Box sx={{ maxWidth: 280, mx: 'auto', textAlign: 'center', mb: 5, color: '#000000' }}>
+          <Typography variant="h6" sx={{ mt: 1, fontWeight: 700 }}>
+            ${savedAmount} out of ${goalAmount} saved!
+          </Typography>
+        </Box>
+
         {/* Progress Bar Area */}
         <Box sx={{ maxWidth: 280, mx: 'auto', textAlign: 'center', mb: 5, color: '#000000' }}>
           <StyledProgress variant="determinate" value={percentage} />
@@ -131,7 +144,7 @@ export default function GoalCard({
             gap: 4 
           }}
         >
-
+          
           <Box>
             {/* Description */}
             <Box sx={{ mb: 4, color: '#000000'}}>
@@ -143,7 +156,7 @@ export default function GoalCard({
               </Typography>
             </Box>
 
-            {/* Checklist */}
+            {/* Checklist 
             <Box sx={{ color: '#000000' }}>
               <SectionTitle>
                 <Grid size={20} /> Criteria
@@ -170,7 +183,7 @@ export default function GoalCard({
                   />
                 ))}
               </FormGroup>
-            </Box>
+            </Box> */}
           </Box>
 
           {/* Right Column (Desktop) */}
@@ -190,19 +203,19 @@ export default function GoalCard({
               
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, ml: 3.5 }}>
                 <Link 
-                  href="/savings-goals/${id}/transaction-history" 
+                  href={`/savings-goals/${id}/transaction-history/${id}`}
                   underline="hover" 
                   sx={{ color: '#673ab7', fontWeight: 600, fontSize: '0.95rem' }}
                 >
                   Contribution History
                 </Link>
-                <Link 
+                {/* <Link 
                   href="#" 
                   underline="hover" 
                   sx={{ color: '#673ab7', fontWeight: 600, fontSize: '0.95rem' }}
                 >
                   Progress Timeline
-                </Link>
+                </Link> */}
               </Box>
             </Paper>
           </Box>

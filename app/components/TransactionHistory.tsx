@@ -1,10 +1,13 @@
+"use client";
 import React from 'react';
+import GetGoalContributions from '../user-data/GetContributionData';
 
 export interface Contribution {
   id: string;
   date: string;
   amount: number;
   note?: string;
+  
 }
 
 export interface SavingsGoal {
@@ -16,6 +19,7 @@ export interface SavingsGoal {
   contributions: Contribution[];
 }
 
+/* These are some hardcoded savings goals that can be used for testing purposes.
 const goals: SavingsGoal[] = [
   {
     id: '1',
@@ -58,21 +62,20 @@ const goals: SavingsGoal[] = [
     ]
   }
 ];
+*/
 
-export default function TransactionHistoryView() {
-  const allTransactions = goals.flatMap(goal => 
-    goal.contributions.map(c => ({ ...c, goalName: goal.name }))
-  ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+export default function TransactionHistoryView({ id }: { id: number }) {
+  const contributions = GetGoalContributions(id);
 
   return (
     <div className="flex flex-col space-y-4 animate-in fade-in duration-300">
-      {allTransactions.map(t => {
+      {contributions.map(t => {
         const isPositive = t.amount >= 0;
         return (
           <div key={t.id} className="flex flex-row justify-between items-center border-b border-gray-200 pb-4 last:border-0">
             <div className="flex flex-col">
               <span className="text-gray-900 font-medium">
-                {new Date(t.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+                {new Date(t.date).toLocaleDateString('en-GB', {timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' })}
               </span>
               <span className="text-gray-500 text-sm">
                 {t.note || (isPositive ? 'Contribution' : 'Withdrawal')}
@@ -84,7 +87,7 @@ export default function TransactionHistoryView() {
           </div>
         );
       })}
-      {allTransactions.length === 0 && (
+      {contributions.length === 0 && (
         <div className="text-center text-gray-500 py-8">
           No transactions found.
         </div>
