@@ -73,7 +73,7 @@ export default function GoalCard({
   percentage,
   description = "(No description provided)",
   goalAmount,
-  savedAmount
+  savedAmount,
   /* subGoals, 
   onCheckboxChange */
 }: GoalCardProps) {
