@@ -29,7 +29,7 @@ export interface BreadcrumbItem {
 
 export interface GoalCardProps {
   id: number;
-  goalTitle: string;
+  goalTitle?: string;
   breadcrumbs?: BreadcrumbItem[]; 
   percentage: number; 
   description?: string;
@@ -77,6 +77,9 @@ export default function GoalCard({
   /* subGoals, 
   onCheckboxChange */
 }: GoalCardProps) {
+  const displayGoalTitle = goalTitle && goalTitle !== 'undefined' && goalTitle !== 'null'
+    ? goalTitle
+    : `Goal ${id}`;
   
   return (
     <Container 
@@ -96,7 +99,7 @@ export default function GoalCard({
         {/* Header & Breadcrumbs */}
         <Box sx={{ textAlign: 'center', mb: 4 }}>
           <Typography variant="h3" sx={{ fontWeight: 800, mb: 0.5, color: '#000000' }}>
-            {goalTitle}
+            {displayGoalTitle}
           </Typography>
           
           {breadcrumbs.length > 0 && (
@@ -116,7 +119,7 @@ export default function GoalCard({
                 </Link>
               ))}
               {/* The current page title (the last item) */}
-              <Typography color="text.primary">{goalTitle}</Typography>
+              <Typography color="text.primary">{displayGoalTitle}</Typography>
             </Breadcrumbs>
           )}
         </Box>
@@ -155,35 +158,6 @@ export default function GoalCard({
                 {description}
               </Typography>
             </Box>
-
-            {/* Checklist 
-            <Box sx={{ color: '#000000' }}>
-              <SectionTitle>
-                <Grid size={20} /> Criteria
-              </SectionTitle>
-              <FormGroup sx={{ ml: 2.5 }}>
-                {subGoals.map((goal) => (
-                  <FormControlLabel
-                    key={goal.id}
-                    control={
-                      <Checkbox 
-                        checked={goal.completed} 
-                        onChange={(e) => onCheckboxChange?.(goal.id, e.target.checked)}
-                        sx={{ '&.Mui-checked': { color: '#673ab7' } }} 
-                      />
-                    }
-                    label={goal.label}
-                    sx={{
-                      '& .MuiTypography-root': {
-                        fontSize: '0.95rem',
-                        fontWeight: 500,
-                        color: goal.completed ? 'text.secondary' : 'text.primary'
-                      }
-                    }}
-                  />
-                ))}
-              </FormGroup>
-            </Box> */}
           </Box>
 
           {/* Right Column (Desktop) */}
